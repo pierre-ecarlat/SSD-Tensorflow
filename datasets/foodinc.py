@@ -48,8 +48,8 @@ def get_split(split_name, dataset_dir, file_pattern=None, reader=None):
     """
     if not file_pattern:
         file_pattern = FILE_PATTERN
-    return pascalvoc_common.get_split(split_name, dataset_dir,
-                                      file_pattern, reader,
-                                      SPLITS_TO_SIZES,
-                                      ITEMS_TO_DESCRIPTIONS,
-                                      NUM_CLASSES)
+    return foodinc_common.get_split(split_name, dataset_dir,
+                                    file_pattern, reader,
+                                    SPLITS_TO_SIZES,
+                                    ITEMS_TO_DESCRIPTIONS,
+                                    NUM_CLASSES)
