@@ -88,10 +88,10 @@ def _parse_rec(filename, shape):
         y2 = float(coor[4])
 
         labels.append (cls)
-        bboxes.append ([y1 / shape[0], 
-                        x1 / shape[1], 
-                        y2 / shape[0], 
-                        x2 / shape[1]])
+        bboxes.append ([np.clip(y1 / shape[1], 0, 1), 
+                        np.clip(x1 / shape[0], 0, 1), 
+                        np.clip(y2 / shape[1], 0, 1), 
+                        np.clip(x2 / shape[0], 0, 1)])
 
     return labels, bboxes
 
