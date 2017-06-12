@@ -43,6 +43,9 @@ tf.app.flags.DEFINE_string(
 tf.app.flags.DEFINE_string(
     'output_dir', './',
     'Output directory where to store TFRecords files.')
+tf.app.flags.DEFINE_string(
+    'image_set', 'train',
+    'The set to convert.')
 
 
 def main(_):
@@ -54,7 +57,7 @@ def main(_):
     if FLAGS.dataset_name == 'pascalvoc':
         pascalvoc_to_tfrecords.run(FLAGS.dataset_dir, FLAGS.output_dir, FLAGS.output_name)
     elif FLAGS.dataset_name == 'foodinc':
-        foodinc_to_tfrecords.run(FLAGS.dataset_dir, FLAGS.output_dir, FLAGS.output_name)
+        foodinc_to_tfrecords.run(FLAGS.dataset_dir, FLAGS.output_dir, FLAGS.output_name, FLAGS.image_set)
     else:
         raise ValueError('Dataset [%s] was not recognized.' % FLAGS.dataset_name)
 
