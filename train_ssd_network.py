@@ -207,7 +207,7 @@ def main(_):
         ssd_class = nets_factory.get_network(FLAGS.model_name)
         ssd_params = ssd_class.default_params._replace(num_classes=FLAGS.num_classes)
         if FLAGS.dataset_name == 'foodinc':
-            ssd_params = ssd_class.default_params._replace(no_annotation_label=0)
+            ssd_params = ssd_params._replace(no_annotation_label=0)
         ssd_net = ssd_class(ssd_params)
         ssd_shape = ssd_net.params.img_shape
         ssd_anchors = ssd_net.anchors(ssd_shape)
