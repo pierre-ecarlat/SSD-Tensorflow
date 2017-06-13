@@ -121,6 +121,8 @@ def main(_):
         # Get the SSD network and its anchors.
         ssd_class = nets_factory.get_network(FLAGS.model_name)
         ssd_params = ssd_class.default_params._replace(num_classes=FLAGS.num_classes)
+        if FLAGS.name == 'foodinc':
+            ssd_params = ssd_class.default_params._replace(no_annotation_label=0)
         ssd_net = ssd_class(ssd_params)
 
         # Evaluation shape and associated anchors: eval_image_size
