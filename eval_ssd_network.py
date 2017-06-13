@@ -148,10 +148,11 @@ def main(_):
             [image, shape, glabels, gbboxes] = provider.get(['image', 'shape',
                                                              'object/label',
                                                              'object/bbox'])
-            if FLAGS.remove_difficult:
-                [gdifficults] = provider.get(['object/difficult'])
-            else:
-                gdifficults = tf.zeros(tf.shape(glabels), dtype=tf.int64)
+            #if FLAGS.remove_difficult:
+            #    [gdifficults] = provider.get(['object/difficult'])
+            #else:
+            #    gdifficults = tf.zeros(tf.shape(glabels), dtype=tf.int64)
+            gdifficults = tf.zeros(tf.shape(glabels), dtype=tf.int64)
 
             # Pre-processing image, labels and bboxes.
             image, glabels, gbboxes, gbbox_img = \
