@@ -5,16 +5,15 @@ deployment/__pycache__/
 nets/__pycache__/
 preprocessing/__pycache__/
 
+*.so
+*.pyc
+
+output
+
 .ipynb_checkpoints/
 notebooks/.ipynb_checkpoints/
 
-checkpoints/ssd_300_vgg.ckpt.data-00000-of-00001
-checkpoints/ssd_300_vgg.ckpt.index
-checkpoints/models/*
-checkpoints/VGG_VOC0712_SSD_*
-checkpoints/vgg_16.ckpt
-checkpoints/model.ckpt-*
-
+checkpoints/*
 logs/
 *.log
 nohup.out
