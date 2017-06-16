@@ -55,7 +55,7 @@ def main(_):
     print('Output directory:', FLAGS.output_dir)
 
     if FLAGS.dataset_name == 'pascalvoc':
-        pascalvoc_to_tfrecords.run(FLAGS.dataset_dir, FLAGS.output_dir, FLAGS.output_name)
+        pascalvoc_to_tfrecords.run(FLAGS.dataset_dir, FLAGS.output_dir, FLAGS.output_name, FLAGS.image_set)
     elif FLAGS.dataset_name == 'foodinc':
         foodinc_to_tfrecords.run(FLAGS.dataset_dir, FLAGS.output_dir, FLAGS.output_name, FLAGS.image_set)
     else:

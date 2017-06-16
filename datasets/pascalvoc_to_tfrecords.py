@@ -61,6 +61,7 @@ from datasets.pascalvoc_common import VOC_LABELS
 # Original dataset organisation.
 DIRECTORY_ANNOTATIONS = 'Annotations/'
 DIRECTORY_IMAGES = 'JPEGImages/'
+DIRECTORY_IMAGESETS = 'ImageSets/Main/'
 
 # TFRecords convertion parameters.
 RANDOM_SEED = 4242
@@ -184,7 +185,7 @@ def _get_output_filename(output_dir, name, idx):
     return '%s/%s_%03d.tfrecord' % (output_dir, name, idx)
 
 
-def run(dataset_dir, output_dir, name='voc_train', shuffling=False):
+def run(dataset_dir, output_dir, name='pascalvoc', set='train', shuffling=False):
     """Runs the conversion operation.
 
     Args:
@@ -196,7 +197,12 @@ def run(dataset_dir, output_dir, name='voc_train', shuffling=False):
 
     # Dataset filenames, and shuffling.
     path = os.path.join(dataset_dir, DIRECTORY_ANNOTATIONS)
-    filenames = sorted(os.listdir(path))
+    set_list_path = os.path.join(dataset_dir, DIRECTORY_IMAGESETS, set + ".txt")
+    if not os.path.isfile (set_list_path):
+        print("Can't find the list", set_list_path)
+        return
+    set_list = [line.rstrip('\n') + ".txt" for line in open(set_list_path)]
+    filenames = sorted(set_list)
     if shuffling:
         random.seed(RANDOM_SEED)
         random.shuffle(filenames)
@@ -206,7 +212,7 @@ def run(dataset_dir, output_dir, name='voc_train', shuffling=False):
     fidx = 0
     while i < len(filenames):
         # Open new TFRecord file.
-        tf_filename = _get_output_filename(output_dir, name, fidx)
+        tf_filename = _get_output_filename(output_dir, '_'.join([name, set]), fidx)
         with tf.python_io.TFRecordWriter(tf_filename) as tfrecord_writer:
             j = 0
             while i < len(filenames) and j < SAMPLES_PER_FILES:

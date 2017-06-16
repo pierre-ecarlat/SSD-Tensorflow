@@ -150,11 +150,12 @@ def main(_):
             [image, shape, glabels, gbboxes] = provider.get(['image', 'shape',
                                                              'object/label',
                                                              'object/bbox'])
-            #if FLAGS.remove_difficult:
-            #    [gdifficults] = provider.get(['object/difficult'])
-            #else:
-            #    gdifficults = tf.zeros(tf.shape(glabels), dtype=tf.int64)
+            
+            # Initialize the mask of labels that won't be used (ignore those set to 1)
             gdifficults = tf.zeros(tf.shape(glabels), dtype=tf.int64)
+            # Some labels are difficult in pascal voc
+            if FLAGS.dataset_name.startswith('pascalvoc') and FLAGS.remove_difficult:
+                [gdifficults] = provider.get(['object/difficult'])
 
             # Pre-processing image, labels and bboxes.
             image, glabels, gbboxes, gbbox_img = \
