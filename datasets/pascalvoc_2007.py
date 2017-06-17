@@ -76,11 +76,11 @@ TEST_STATISTICS = {
     'total': (20, 20),
 }
 SPLITS_TO_SIZES = {
-    'train': 5011,
+    'trainval': 5011,
     'test': 4952,
 }
 SPLITS_TO_STATISTICS = {
-    'train': TRAIN_STATISTICS,
+    'trainval': TRAIN_STATISTICS,
     'test': TEST_STATISTICS,
 }
 NUM_CLASSES = 20
