@@ -53,7 +53,7 @@ import numpy as np
 import tensorflow as tf
 
 from datasets.dataset_utils import int64_feature, float_feature, bytes_feature
-from datasets.foodinc_common import FOODINC_LABELS
+from datasets.foodinc import FOODINC_LABELS
 
 # Original dataset organisation.
 DIRECTORY_ANNOTATIONS = 'Annotations/'
